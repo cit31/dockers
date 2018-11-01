@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: simple-command 
+spec:
+  template:
+    spec:
+      containers:
+        - name: simple-command 
+          image: centos 
+          command: ["id"]
+      restartPolicy: Never

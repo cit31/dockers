@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample 
+spec:
+  containers:
+    - name: centos 
+      image: centos 
+      command: ["ping",  "-c",  "3000", "google.com"] 
+      

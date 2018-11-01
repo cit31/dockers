@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: web-rs 
+  labels:
+    tier: web-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: web-rs
+  template:
+    metadata:
+      labels:
+        tier: web-rs
+    spec:
+      containers:
+        - name: webservice
+          image: raghudevops32/s1-webservice:latest
+          ports:
+            - containerPort: 80
