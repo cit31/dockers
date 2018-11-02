@@ -1,18 +1,19 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: web-rs 
+  name: web-rs-s1
+  namespace: stage1
   labels:
-    tier: web-rs
+    tier: web-rs-s1
 spec:
   replicas: 3
   selector:
     matchLabels:
-      tier: web-rs
+      tier: web-rs-s1
   template:
     metadata:
       labels:
-        tier: web-rs
+        tier: web-rs-s1
     spec:
       containers:
         - name: webservice

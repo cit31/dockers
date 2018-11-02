@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: stack-s1
+  namespace: stage1
+spec:
+  type: LoadBalancer  
+  selector:
+    tier: web-rs-s1
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

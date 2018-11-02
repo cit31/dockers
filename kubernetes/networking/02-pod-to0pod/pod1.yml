@@ -1,0 +1,9 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-to-pod-nw
+spec:
+  containers:
+    - name: one
+      image: centos
+      command: ["sleep", "4000"]

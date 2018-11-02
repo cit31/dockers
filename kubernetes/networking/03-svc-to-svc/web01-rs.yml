@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: web01-rs
+  namespace: demo01
+  labels:
+    tier: web01-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: web01-rs
+  template:
+    metadata:
+      labels:
+        tier: web01-rs
+    spec:
+      containers:
+        - name: webservice
+          image: raghudevops32/nw-web01:latest
+          ports:
+            - containerPort: 80
+...
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: web01-svc
+  namespace: demo01
+spec:
+  #type: LoadBalancer  
+  selector:
+    tier: web01-rs
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
