@@ -15,7 +15,7 @@ fullnameOverride: ""
 containers:
   webservice:
     name: webservice
-    image: raghudevops32/s1-webservice:latest
+    image: raghudevops32/s1-webservice:v2
 
 service:
   type: LoadBalancer

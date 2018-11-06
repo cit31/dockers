@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mariadb.fullname" . }}
+  labels:
+    app: {{ .Values.Label.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.Label.Service }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.Label.Service }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.name }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: kube-mariadb-volume
+      volumes:
+      - name: kube-mariadb-volume
+        persistentVolumeClaim:
+          claimName: kube-mariadb
+

@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy-s2
+  labels:
+    app: httpd
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: httpd
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+        - name: webserive
+          image: raghudevops32/s1-webservice:v2
+          ports:
+          - containerPort: 80
+...
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: stack-s2
+spec:
+  type: LoadBalancer  
+  selector:
+    app: httpd
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+...

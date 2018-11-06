@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "stack.fullname" . }}-rs
+  namespace: {{ .Values.names.namespace }}
+  labels:
+    tier: {{ .Values.names.tier }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      tier: {{ .Values.names.tier }}
+  template:
+    metadata:
+      labels:
+        tier: {{ .Values.names.tier }}
+    spec:
+      containers:
+        - name: {{ .Values.containers.webservice.name }}
+          image: {{ .Values.containers.webservice.image }}
+          ports:
+            - containerPort: {{ .Values.service.port }}

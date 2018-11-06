@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: webservice
-          image: raghudevops32/s1-webservice:latest
+          image: raghudevops32/s1-webservice:latest 
           ports:
             - containerPort: 80
