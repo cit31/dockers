@@ -3,17 +3,13 @@ kind: Service
 metadata:
   name: {{ include "mariadb.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "mariadb.name" . }}
-    helm.sh/chart: {{ include "mariadb.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app: {{ .Values.Label.Service }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.port }}
       protocol: TCP
-      name: http
+      name: mariadb
   selector:
-    app.kubernetes.io/name: {{ include "mariadb.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: {{ .Values.Label.Service }}

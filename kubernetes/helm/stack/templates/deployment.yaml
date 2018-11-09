@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "stack.fullname" . }}-rs
-  namespace: {{ .Values.names.namespace }}
   labels:
     tier: {{ .Values.names.tier }}
 spec:
@@ -16,7 +15,8 @@ spec:
         tier: {{ .Values.names.tier }}
     spec:
       containers:
-        - name: {{ .Values.containers.webservice.name }}
-          image: {{ .Values.containers.webservice.image }}
+        - name: "tomcat"
+          image: "{{ .Values.image.repository }}:{{.Values.image.tag}}"
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: {{ .Values.service.targerPort }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}

@@ -12,9 +12,10 @@ nameOverride: ""
 fullnameOverride: ""
 Label:
   service: mariadb
+
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+  port: 3306
 
 ingress:
   enabled: false

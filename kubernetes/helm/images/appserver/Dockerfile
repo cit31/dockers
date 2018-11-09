@@ -1,5 +1,4 @@
-#raghudevops32/studentapp:v1
+#raghudevops32/studentapp:v3
 FROM java
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY ROOT.war /usr/local/tomcat/webapps/ROOT.war
-
+COPY ROOT.war /ROOT.war
+CMD java -jar /ROOT.war 

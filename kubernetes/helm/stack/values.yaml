@@ -5,26 +5,20 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+  repository: raghudevops32/studentapp
+  tag: v2
+  pullPolicy: Always
 
 nameOverride: ""
 fullnameOverride: ""
 
-containers:
-  webservice:
-    name: webservice
-    image: raghudevops32/s1-webservice:v2
-
 service:
   type: LoadBalancer
   port: 80
-  targerPort: 80
+  targerPort: 8080
   protocol: TCP
 
 names:
-  namespace: stage1
   tier: web-rs-s1
 
 ingress:
